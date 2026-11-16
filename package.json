@@ -1,0 +1,11 @@
+{
+  "name": "virtually-kelsey",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pixel-for-pixel rebuild of the Virtual Assistant Framer Template (bujadesign)",
+  "scripts": {
+    "dev": "python3 -m http.server 4173",
+    "start": "python3 -m http.server 4173"
+  }
+}
+

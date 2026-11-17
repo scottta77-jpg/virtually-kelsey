@@ -403,7 +403,8 @@ body {
   align-self: flex-end;
   height: clamp(600px, calc(100vh - 136px), 940px);
   height: clamp(600px, calc(100svh - 136px), 940px);
-  width: auto;
+  width: calc(clamp(600px, calc(100vh - 136px), 940px) * 2576 / 2680);
+  width: calc(clamp(600px, calc(100svh - 136px), 940px) * 2576 / 2680);
   max-width: calc(100% - 552px);
   position: relative;
   flex-shrink: 1;
@@ -418,6 +419,98 @@ body {
   max-width: 100%;
   object-fit: contain;
   object-position: right bottom;
+}
+
+/* Keep selectable copy aligned with the original speech bubbles at every size. */
+.hero-artwork {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2576 / 2680;
+  container-type: inline-size;
+  isolation: isolate;
+}
+
+.hero-right .hero-artwork img {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.hero-backdrop {
+  position: relative;
+  z-index: 0;
+}
+
+.hero-right .hero-artwork .hero-portrait {
+  position: absolute;
+  z-index: 1;
+  left: 15.6%;
+  bottom: 0;
+  width: 81.8%;
+  height: 98.2%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.hero-message {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 2.45cqw;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #191919;
+}
+
+.hero-speaker,
+.hero-message-text {
+  pointer-events: auto;
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.hero-message--client {
+  left: 1.55%;
+  top: 11.95%;
+  width: 38%;
+}
+
+.hero-speaker {
+  margin-bottom: 0.5cqw;
+}
+
+.hero-message-text {
+  padding: 2cqw 3.65cqw;
+  border-radius: 1.5cqw;
+}
+
+.hero-message--client .hero-speaker {
+  font-weight: 400;
+}
+
+.hero-message--client .hero-message-text {
+  background: #ffda54;
+  border-top-right-radius: 0;
+}
+
+.hero-message--kelsey {
+  left: 61.4%;
+  top: 64%;
+  width: 36.6%;
+}
+
+.hero-message--kelsey .hero-speaker {
+  color: #ffffff;
+}
+
+.hero-message--kelsey .hero-message-text {
+  color: #000000;
+  background: #fdfdff;
+  border-top-left-radius: 0;
 }
 
 /* ==========================================================================

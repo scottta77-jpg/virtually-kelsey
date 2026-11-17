@@ -338,19 +338,51 @@
     });
   }
 
-  // Initialize on DOMContentLoaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      runInitialAppearAnimations();
-      initScrollRevealAnimations();
-      initFaqAccordions();
-      initNavigation();
+  /**
+   * 5. Split-Text Hover Highlight Effect for Footer Credit Link
+   */
+  function initSplitTextLinks() {
+    const links = document.querySelectorAll('.split-text-link');
+    links.forEach((link) => {
+      const text = link.textContent || '';
+      link.textContent = '';
+
+      Array.from(text).forEach((char, idx) => {
+        const displayChar = char === ' ' ? '\u00A0' : char;
+
+        const charWrap = document.createElement('span');
+        charWrap.className = 'split-char';
+        charWrap.style.setProperty('--char-index', String(idx));
+
+        const topSpan = document.createElement('span');
+        topSpan.className = 'split-char-top';
+        topSpan.textContent = displayChar;
+
+        const bottomSpan = document.createElement('span');
+        bottomSpan.className = 'split-char-bottom';
+        bottomSpan.setAttribute('aria-hidden', 'true');
+        bottomSpan.textContent = displayChar;
+
+        charWrap.appendChild(topSpan);
+        charWrap.appendChild(bottomSpan);
+        link.appendChild(charWrap);
+      });
     });
-  } else {
+  }
+
+  function initAll() {
     runInitialAppearAnimations();
     initScrollRevealAnimations();
     initFaqAccordions();
     initNavigation();
+    initSplitTextLinks();
+  }
+
+  // Initialize on DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
   }
 })();
 

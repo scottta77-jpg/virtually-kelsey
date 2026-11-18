@@ -3418,8 +3418,8 @@ section[id] {
   height: 42px;
   padding: 0 22px;
   border-radius: 100px;
-  border: 1.5px solid var(--lilac-btn);
-  background-color: var(--lilac-btn);
+  border: 1.5px solid #000000;
+  background-color: var(--white);
   color: var(--espresso);
   font-family: "Hanken Grotesk", sans-serif;
   font-size: 15px;
@@ -3430,9 +3430,9 @@ section[id] {
 }
 
 .handoff-plan-btn:hover {
-  background-color: var(--lilac-hover);
-  border-color: var(--lilac-hover);
-  color: var(--espresso);
+  background-color: var(--espresso);
+  border-color: var(--espresso);
+  color: var(--white);
 }
 
 /* Recommended / Active Plan Card State */

@@ -1395,7 +1395,7 @@ section[id] {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: 814px;
   padding: 100px 50px;
   background-color: var(--ivory);
   position: relative;
@@ -1410,10 +1410,9 @@ section[id] {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 64px;
   width: 100%;
   max-width: 1200px;
-  height: auto;
+  height: 614px;
   overflow: visible;
 }
 
@@ -1486,36 +1485,67 @@ section[id] {
 }
 
 .contact-right {
-  width: 440px;
-  max-width: 100%;
-  height: auto;
+  width: 608px;
+  height: 614px;
   position: relative;
   flex-shrink: 0;
   will-change: transform, opacity;
 }
 
-.contact-right img {
-  display: block;
+.contact-artwork {
+  position: relative;
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 100%;
+  aspect-ratio: 608 / 614;
+  container-type: inline-size;
+  isolation: isolate;
 }
 
-.contact-work-badge {
+.contact-photo-frame {
+  position: absolute;
+  left: 16.12%;
+  top: 6.51%;
+  width: 77.3%;
+  height: 87.62%;
+  border-radius: 4.5cqw;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(38, 26, 23, 0.08);
+  z-index: 1;
+}
+
+.contact-right .contact-photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.contact-work-bubble {
   position: absolute;
   z-index: 2;
-  top: 40px;
-  left: -36px;
-  padding: 15px 26px;
-  border-radius: 14px 0 14px 14px;
-  background-color: #FED34D;
-  box-shadow: 0 10px 24px rgba(38, 26, 23, 0.12);
+  left: 2.63%;
+  top: 14.66%;
+  padding: 2.35cqw 3.8cqw;
+  background-color: #FFDA54;
+  border-radius: 1.65cqw 0 1.65cqw 1.65cqw;
+  box-shadow: 0 8px 24px rgba(38, 26, 23, 0.1);
   font-family: "Hanken Grotesk", sans-serif;
-  font-size: 18px;
+  font-size: clamp(13px, 2.55cqw, 16px);
   font-weight: 600;
-  line-height: 1.25;
-  color: var(--espresso);
+  line-height: 1.35;
+  color: #000000;
   white-space: nowrap;
+}
+
+.contact-sparkle {
+  position: absolute;
+  z-index: 2;
+  left: 12.6%;
+  top: 74.5%;
+  width: 7.4%;
+  height: auto;
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -2130,8 +2160,8 @@ section[id] {
   }
 
   .contact-right {
-    width: 420px;
-    height: auto;
+    width: 476px;
+    height: 481px;
   }
 
   .site-footer {
@@ -2314,7 +2344,7 @@ section[id] {
   .contact-section {
     flex-direction: column;
     height: auto;
-    padding: 48px 16px;
+    padding: 40px 0px;
   }
 
   .contact-inner {
@@ -2328,7 +2358,7 @@ section[id] {
     align-items: center;
     width: 100%;
     max-width: 100%;
-    padding: 0px;
+    padding: 0px 16px;
   }
 
   .contact-text-group {
@@ -2347,15 +2377,9 @@ section[id] {
 
   .contact-right {
     width: 100%;
-    max-width: 380px;
+    max-width: 440px;
     height: auto;
-  }
-
-  .contact-work-badge {
-    top: 20px;
-    left: 12px;
-    padding: 12px 20px;
-    font-size: 16px;
+    margin-inline: auto;
   }
 
   .site-footer {

@@ -306,8 +306,17 @@
    * 4. Tablet & Mobile Hamburger Menu Toggle & Smooth Anchor Scroll
    */
   function initNavigation() {
+    const navbarWrapper = document.querySelector('.navbar-wrapper');
     const navbar = document.querySelector('.navbar');
     const toggleBtn = document.querySelector('.navbar-toggle');
+
+    if (navbarWrapper) {
+      const updateScrolled = () => {
+        navbarWrapper.classList.toggle('is-scrolled', window.scrollY > 12);
+      };
+      updateScrolled();
+      window.addEventListener('scroll', updateScrolled, { passive: true });
+    }
 
     if (toggleBtn && navbar) {
       toggleBtn.addEventListener('click', () => {
@@ -331,6 +340,7 @@
           e.preventDefault();
           if (navbar && navbar.classList.contains('menu-open')) {
             navbar.classList.remove('menu-open');
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
           }
           targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }

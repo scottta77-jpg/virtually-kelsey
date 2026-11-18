@@ -1538,16 +1538,6 @@ section[id] {
   white-space: nowrap;
 }
 
-.contact-sparkle {
-  position: absolute;
-  z-index: 2;
-  left: 12.6%;
-  top: 74.5%;
-  width: 7.4%;
-  height: auto;
-  pointer-events: none;
-}
-
 /* ==========================================================================
    SECTION 8: Footer (footer.framer-wpf7o2)
    ========================================================================== */

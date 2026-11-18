@@ -3503,7 +3503,7 @@ section[id] {
 .first-friday-section {
   width: 100%;
   padding: 104px 50px;
-  background-color: var(--white);
+  background-color: #fff6d1;
   display: flex;
   justify-content: center;
 }

@@ -1511,12 +1511,12 @@ section[id] {
   width: 100%;
   height: 76px;
   padding: 18px 120px;
-  background-color: var(--espresso);
+  background-color: #DCD9FD;
   position: relative;
 }
 
 .site-footer a:focus-visible {
-  outline: 2px solid var(--champagne);
+  outline: 2px solid var(--espresso);
   outline-offset: 3px;
 }
 
@@ -1533,16 +1533,20 @@ section[id] {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: var(--white);
+  color: var(--espresso);
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-.footer-social-link:hover svg path[fill="rgb(255,255,255)"] {
-  fill: var(--champagne);
+.footer-social-link svg path[fill="rgb(255,255,255)"] {
+  fill: var(--espresso);
 }
 
-.footer-social-link:hover svg path[stroke="rgb(255,255,255)"] {
-  stroke: var(--champagne);
+.footer-social-link svg path[stroke="rgb(255,255,255)"] {
+  stroke: var(--espresso);
+}
+
+.footer-social-link:hover {
+  opacity: 0.65;
 }
 
 .footer-social-instagram {
@@ -1581,31 +1585,38 @@ section[id] {
   font-weight: 400;
   line-height: 28px;
   letter-spacing: 0.25px;
-  color: var(--white);
+  color: var(--espresso);
 }
 
 .footer-privacy {
   text-decoration: underline;
-  text-decoration-color: var(--champagne);
+  text-decoration-color: rgba(38, 26, 23, 0.45);
   text-underline-offset: 4px;
   text-decoration-thickness: 1.5px;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .footer-privacy:hover {
-  color: var(--champagne);
+  text-decoration-color: var(--espresso);
+  opacity: 0.72;
 }
 
 .split-text-link {
   display: inline-flex;
   position: relative;
   vertical-align: bottom;
-  color: var(--white);
+  color: var(--espresso);
   text-decoration: none;
-  border-bottom: 1.5px solid var(--champagne);
+  border-bottom: 1.5px solid rgba(38, 26, 23, 0.45);
   cursor: pointer;
   line-height: 26px;
   overflow: hidden;
+  transition: border-bottom-color 0.2s ease;
+}
+
+.split-text-link:hover,
+.split-text-link:focus-visible {
+  border-bottom-color: var(--espresso);
 }
 
 .split-char {
@@ -1632,7 +1643,7 @@ section[id] {
   position: absolute;
   top: 0;
   left: 0;
-  color: var(--champagne);
+  color: var(--espresso);
   transform: translateY(100%);
 }
 

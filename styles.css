@@ -1049,7 +1049,7 @@ section[id] {
   font-weight: 900;
   line-height: 75.39px;
   letter-spacing: -1.88px;
-  color: var(--gold);
+  color: rgb(255, 218, 84);
   user-select: none;
   pointer-events: none;
 }

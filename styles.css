@@ -8,7 +8,17 @@
   --white: #FFFFFF;
   --ivory: #FAF6F0;
   --champagne: #E8DCCB;
-  --gold: #B69A73;
+  --champagne-highlight: #E1BC84;
+  --champagne-highlight-hover: #D4AC71;
+  --gold: #D2AC7E;
+  --gold-link: #C89F6E;
+  --gold-hover: #B88E5C;
+  --lilac: #E1DDFD;
+  --lilac-card: #DDDBFD;
+  --lilac-btn: #DBD8FD;
+  --lilac-hover: #CBC6FB;
+  --lilac-accent: #CAC5F8;
+  --lilac-border: #D2CDFA;
   --espresso: #261A17;
   --espresso-hover: #3D2C26;
   --body-text: #625A54;
@@ -90,7 +100,7 @@ p a:not([class]):hover,
    Typography Presets & Color Utilities
    ========================================================================== */
 .text-purple {
-  color: var(--espresso);
+  color: var(--gold);
 }
 
 /* Preset 1q67ktc: H1 (Hero Title, Contact CTA Title) */
@@ -385,7 +395,7 @@ p a:not([class]):hover,
 }
 
 .hero-headline-accent {
-  color: var(--espresso);
+  color: var(--gold-link);
 }
 
 .hero-eyebrow {
@@ -593,7 +603,7 @@ p a:not([class]):hover,
 }
 
 .hero-message--client .hero-message-text {
-  background: var(--champagne);
+  background: var(--champagne-highlight);
   color: var(--espresso);
   border: 1px solid var(--white);
   box-shadow: 0 8px 24px rgba(38, 26, 23, 0.08);
@@ -689,12 +699,12 @@ p a:not([class]):hover,
 }
 
 .service-card:hover {
-  border-color: var(--gold);
+  border-color: var(--lilac-accent);
   box-shadow: 0 10px 28px rgba(38, 26, 23, 0.09);
 }
 
 .service-card.is-current-service {
-  border-color: var(--gold);
+  border-color: var(--lilac-accent);
 }
 
 .service-details-btn {
@@ -707,7 +717,7 @@ p a:not([class]):hover,
   font-size: 17px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--espresso);
+  color: var(--gold-link);
   text-decoration: none;
   cursor: pointer;
   transition: color 0.22s cubic-bezier(0.22, 1, 0.36, 1);
@@ -727,7 +737,7 @@ p a:not([class]):hover,
 
 .service-details-btn:hover,
 .service-details-btn:focus-visible {
-  color: var(--espresso-hover);
+  color: var(--espresso);
 }
 
 .service-details-btn:hover .service-details-arrow,
@@ -1069,8 +1079,8 @@ p a:not([class]):hover,
 .faq-item {
   width: 100%;
   padding: 24px 32px;
-  background-color: var(--ivory);
-  border: 1px solid var(--border);
+  background-color: var(--lilac);
+  border: 1px solid var(--lilac-border);
   border-radius: 12px;
   cursor: pointer;
   overflow: hidden;
@@ -1079,7 +1089,7 @@ p a:not([class]):hover,
 }
 
 .faq-item:hover {
-  border-color: var(--gold);
+  border-color: var(--lilac-accent);
 }
 
 .faq-item-row {
@@ -2343,11 +2353,11 @@ p a:not([class]):hover,
 .service-sidebar-card .service-details-btn {
   margin-top: 6px;
   padding-top: 0;
-  color: var(--espresso);
+  color: var(--gold-hover);
 }
 
 .service-sidebar-card .service-details-btn:hover {
-  color: var(--espresso-hover);
+  color: var(--espresso);
 }
 
 /* "More ways I can help" Section */
@@ -2465,7 +2475,7 @@ p a:not([class]):hover,
   position: absolute;
   left: -28px;
   bottom: 28px;
-  background-color: var(--champagne);
+  background-color: var(--champagne-highlight);
   border: 1px solid var(--white);
   padding: 16px 22px;
   border-radius: 8px;
@@ -2663,8 +2673,8 @@ p a:not([class]):hover,
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: var(--espresso);
-  color: var(--white);
+  background-color: var(--lilac-accent);
+  color: var(--espresso);
   flex-shrink: 0;
 }
 
@@ -2725,8 +2735,8 @@ p a:not([class]):hover,
   height: 24px;
   margin-top: 2px;
   border-radius: 50%;
-  background-color: var(--espresso);
-  color: var(--white);
+  background-color: var(--lilac-accent);
+  color: var(--espresso);
   flex-shrink: 0;
 }
 
@@ -2755,12 +2765,12 @@ p a:not([class]):hover,
 .home-about-link {
   margin-top: 8px;
   padding-top: 0;
-  color: var(--espresso);
+  color: var(--gold-link);
 }
 
 .home-about-link:hover,
 .home-about-link:focus-visible {
-  color: var(--espresso-hover);
+  color: var(--espresso);
 }
 
 /* ==========================================================================
@@ -2793,7 +2803,7 @@ p a:not([class]):hover,
   position: absolute;
   left: -26px;
   bottom: 24px;
-  background-color: var(--champagne);
+  background-color: var(--champagne-highlight);
   border: 1px solid var(--white);
   padding: 13px 22px;
   border-radius: 6px;
@@ -2910,8 +2920,8 @@ p a:not([class]):hover,
   width: 28px;
   height: 28px;
   border-radius: 7px;
-  background-color: var(--espresso);
-  color: var(--white);
+  background-color: var(--lilac-accent);
+  color: var(--espresso);
   margin-bottom: 4px;
 }
 
@@ -3089,8 +3099,8 @@ p a:not([class]):hover,
   justify-content: space-between;
   align-items: center;
   padding: 18px 24px;
-  background-color: var(--ivory);
-  border-bottom: 1px solid var(--border);
+  background-color: var(--lilac);
+  border-bottom: 1px solid var(--lilac-border);
 }
 
 .handoff-list-head-title {
@@ -3160,9 +3170,9 @@ p a:not([class]):hover,
 }
 
 .handoff-task[aria-pressed="true"] .handoff-check {
-  background-color: var(--espresso);
-  border-color: var(--espresso);
-  color: var(--white);
+  background-color: var(--lilac-accent);
+  border-color: #B8B1F5;
+  color: var(--espresso);
 }
 
 .handoff-task-name {
@@ -3287,7 +3297,7 @@ p a:not([class]):hover,
   position: absolute;
   top: -13px;
   left: 24px;
-  background-color: var(--champagne);
+  background-color: var(--champagne-highlight);
   color: var(--espresso);
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
@@ -3351,7 +3361,7 @@ p a:not([class]):hover,
 }
 
 .handoff-perk-check {
-  color: var(--espresso);
+  color: var(--gold);
   font-weight: 700;
   flex-shrink: 0;
   line-height: 1.35;
@@ -3386,8 +3396,8 @@ p a:not([class]):hover,
   height: 42px;
   padding: 0 22px;
   border-radius: 100px;
-  border: 1.5px solid var(--espresso);
-  background-color: transparent;
+  border: 1.5px solid var(--lilac-btn);
+  background-color: var(--lilac-btn);
   color: var(--espresso);
   font-family: "Hanken Grotesk", sans-serif;
   font-size: 15px;
@@ -3398,20 +3408,20 @@ p a:not([class]):hover,
 }
 
 .handoff-plan-btn:hover {
-  background-color: var(--espresso);
-  border-color: var(--espresso);
-  color: var(--white);
+  background-color: var(--lilac-hover);
+  border-color: var(--lilac-hover);
+  color: var(--espresso);
 }
 
 /* Recommended / Active Plan Card State */
 .handoff-plan-card.is-recommended {
-  background-color: var(--espresso);
-  border-color: var(--espresso);
-  box-shadow: 0 14px 32px rgba(38, 26, 23, 0.18);
+  background-color: var(--lilac-card);
+  border-color: var(--lilac-border);
+  box-shadow: 0 12px 28px rgba(38, 26, 23, 0.08);
 }
 
 .handoff-plan-card.is-recommended a:focus-visible {
-  outline: 2px solid var(--champagne);
+  outline: 2px solid var(--espresso);
   outline-offset: 3px;
 }
 
@@ -3421,32 +3431,32 @@ p a:not([class]):hover,
 
 .handoff-plan-card.is-recommended .handoff-plan-name,
 .handoff-plan-card.is-recommended .handoff-plan-price {
-  color: var(--white);
+  color: var(--espresso);
 }
 
 .handoff-plan-card.is-recommended .handoff-plan-hours,
 .handoff-plan-card.is-recommended .handoff-plan-perks li {
-  color: var(--white);
+  color: var(--espresso);
 }
 
 .handoff-plan-card.is-recommended .handoff-plan-desc,
 .handoff-plan-card.is-recommended .handoff-plan-price span {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--body-text);
 }
 
 .handoff-plan-card.is-recommended .handoff-perk-check {
-  color: var(--champagne);
+  color: var(--gold-hover);
 }
 
 .handoff-plan-card.is-recommended .handoff-plan-btn {
-  background-color: var(--ivory);
-  border-color: var(--ivory);
+  background-color: var(--champagne-highlight);
+  border-color: var(--champagne-highlight);
   color: var(--espresso);
 }
 
 .handoff-plan-card.is-recommended .handoff-plan-btn:hover {
-  background-color: var(--champagne);
-  border-color: var(--champagne);
+  background-color: var(--champagne-highlight-hover);
+  border-color: var(--champagne-highlight-hover);
   color: var(--espresso);
 }
 
@@ -3512,8 +3522,8 @@ p a:not([class]):hover,
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  border: 1.5px solid var(--gold);
-  background-color: var(--white);
+  border: 1.5px solid var(--espresso);
+  background-color: var(--lilac-btn);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3526,8 +3536,8 @@ p a:not([class]):hover,
 }
 
 .first-friday-num.is-solid {
-  background-color: var(--ivory);
-  border-color: var(--gold);
+  background-color: var(--lilac-btn);
+  border-color: var(--espresso);
   color: var(--espresso);
 }
 
@@ -3680,7 +3690,7 @@ p a:not([class]):hover,
   width: 100%;
   height: 5px;
   border-radius: 99px;
-  background-color: var(--champagne);
+  background-color: #EFECE8;
   overflow: hidden;
   margin-top: 2px;
 }
@@ -3689,7 +3699,7 @@ p a:not([class]):hover,
   width: 70%;
   height: 100%;
   border-radius: 99px;
-  background-color: var(--espresso);
+  background-color: #C6BEFC;
 }
 
 .friday-wrapup-foot {
@@ -4006,7 +4016,7 @@ p a:not([class]):hover,
   }
 
   .handoff-plan-card.is-recommended .handoff-plan-action {
-    border-top-color: rgba(255, 255, 255, 0.22);
+    border-top-color: rgba(38, 26, 23, 0.12);
   }
 
   .first-friday-section {

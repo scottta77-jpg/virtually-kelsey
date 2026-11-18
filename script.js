@@ -740,9 +740,115 @@
     });
   }
 
+  /**
+   * 9. Framer Marketplace Typewriter Effect ("get started?")
+   */
+  function initTypewriterEffect() {
+    const wraps = document.querySelectorAll('[data-typewriter]');
+    if (!wraps.length) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    wraps.forEach((wrap) => {
+      const accentEl = wrap.querySelector('.typewriter-accent');
+      const punctEl = wrap.querySelector('.typewriter-punct');
+      const cursorEl = wrap.querySelector('.typewriter-cursor');
+      if (!accentEl || !punctEl) return;
+
+      const accentText = accentEl.textContent || 'get started';
+      const punctText = punctEl.textContent || '?';
+      const fullLength = accentText.length + punctText.length;
+
+      const TYPING_SPEED = 100;
+      const DELETING_SPEED = 60;
+      const PAUSE_DURATION = 1000;
+
+      let charIndex = 0;
+      let isDeleting = false;
+      let isInView = false;
+      let stepTimer = null;
+
+      function renderSlice(count) {
+        const accentCount = Math.min(count, accentText.length);
+        const punctCount = Math.max(0, count - accentText.length);
+        accentEl.textContent = accentText.slice(0, accentCount);
+        punctEl.textContent = punctText.slice(0, punctCount);
+      }
+
+      function scheduleNext() {
+        if (stepTimer) {
+          clearTimeout(stepTimer);
+          stepTimer = null;
+        }
+        if (!isInView) return;
+
+        if (!isDeleting && charIndex < fullLength) {
+          stepTimer = window.setTimeout(() => {
+            charIndex += 1;
+            renderSlice(charIndex);
+            scheduleNext();
+          }, TYPING_SPEED);
+        } else if (!isDeleting && charIndex === fullLength) {
+          stepTimer = window.setTimeout(() => {
+            isDeleting = true;
+            scheduleNext();
+          }, PAUSE_DURATION);
+        } else if (isDeleting && charIndex > 0) {
+          stepTimer = window.setTimeout(() => {
+            charIndex -= 1;
+            renderSlice(charIndex);
+            scheduleNext();
+          }, DELETING_SPEED);
+        } else {
+          stepTimer = window.setTimeout(() => {
+            isDeleting = false;
+            scheduleNext();
+          }, PAUSE_DURATION);
+        }
+      }
+
+      renderSlice(0);
+
+      if (cursorEl) {
+        window.setInterval(() => {
+          if (isInView) {
+            cursorEl.classList.toggle('is-hidden');
+          }
+        }, 500);
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const nowVisible = entries[0].isIntersecting;
+            if (nowVisible && !isInView) {
+              isInView = true;
+              scheduleNext();
+            } else if (!nowVisible && isInView) {
+              isInView = false;
+              if (stepTimer) {
+                clearTimeout(stepTimer);
+                stepTimer = null;
+              }
+            }
+          },
+          { threshold: 0.1 }
+        );
+        observer.observe(wrap);
+      } else {
+        isInView = true;
+        scheduleNext();
+      }
+    });
+  }
+
   function initAll() {
     runInitialAppearAnimations();
     initTextRevealScroll();
+    initTypewriterEffect();
     initScrollRevealAnimations();
     initFaqAccordions();
     initNavigation();

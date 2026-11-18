@@ -1326,6 +1326,34 @@ section[id] {
   width: 100%;
 }
 
+.typewriter-wrap {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.15em;
+  white-space: pre;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.9em;
+  margin-left: 3px;
+  border-radius: 2px;
+  background-color: var(--gold);
+  opacity: 1;
+  transition: opacity 0.1s ease;
+}
+
+.typewriter-cursor.is-hidden {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    display: none;
+  }
+}
+
 .contact-right {
   width: 608px;
   height: 614px;

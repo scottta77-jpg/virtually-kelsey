@@ -306,16 +306,77 @@
    * 4. Tablet & Mobile Hamburger Menu Toggle & Smooth Anchor Scroll
    */
   function initNavigation() {
-    const navbarWrapper = document.querySelector('.navbar-wrapper');
     const navbar = document.querySelector('.navbar');
     const toggleBtn = document.querySelector('.navbar-toggle');
 
-    if (navbarWrapper) {
-      const updateScrolled = () => {
-        navbarWrapper.classList.toggle('is-scrolled', window.scrollY > 12);
+    if (navbar) {
+      let isStickyActive = false;
+      let stickyTimer = null;
+      const STICKY_TRIGGER_Y = 140;
+      const STICKY_DELAY_MS = 110;
+
+      const clearStickyTimer = () => {
+        if (stickyTimer !== null) {
+          clearTimeout(stickyTimer);
+          stickyTimer = null;
+        }
       };
-      updateScrolled();
-      window.addEventListener('scroll', updateScrolled, { passive: true });
+
+      let stickyAnim = null;
+
+      const updateStickyNav = () => {
+        const y = window.scrollY;
+
+        if (!isStickyActive) {
+          if (y > STICKY_TRIGGER_Y) {
+            if (stickyTimer === null) {
+              stickyTimer = setTimeout(() => {
+                stickyTimer = null;
+                if (window.scrollY > STICKY_TRIGGER_Y && !isStickyActive) {
+                  isStickyActive = true;
+                  navbar.classList.add('is-sticky');
+                  if (
+                    navbar.animate &&
+                    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                  ) {
+                    if (stickyAnim) stickyAnim.cancel();
+                    stickyAnim = navbar.animate(
+                      [
+                        { transform: 'translateY(-100%)' },
+                        { transform: 'translateY(0px)' },
+                      ],
+                      {
+                        duration: 420,
+                        easing: FRAMER_EASE,
+                      }
+                    );
+                    const currentAnim = stickyAnim;
+                    setTimeout(() => {
+                      if (stickyAnim === currentAnim) {
+                        stickyAnim.cancel();
+                        stickyAnim = null;
+                      }
+                    }, 450);
+                  }
+                }
+              }, STICKY_DELAY_MS);
+            }
+          } else {
+            clearStickyTimer();
+          }
+        } else if (y <= 4) {
+          clearStickyTimer();
+          if (stickyAnim) {
+            stickyAnim.cancel();
+            stickyAnim = null;
+          }
+          isStickyActive = false;
+          navbar.classList.remove('is-sticky');
+        }
+      };
+
+      updateStickyNav();
+      window.addEventListener('scroll', updateStickyNav, { passive: true });
     }
 
     if (toggleBtn && navbar) {

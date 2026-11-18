@@ -482,7 +482,7 @@
     // Footer "Cornerstone Digital" split-text link
     const links = document.querySelectorAll('.split-text-link');
     links.forEach((link) => {
-      const text = link.textContent || '';
+      const text = (link.textContent || '').replace(/\s+/g, ' ').trim();
       link.textContent = '';
 
       Array.from(text).forEach((char, idx) => {
@@ -835,13 +835,17 @@
     if (prefersReducedMotion) return;
 
     wraps.forEach((wrap) => {
+      const sizerEl = wrap.querySelector('.typewriter-sizer');
       const accentEl = wrap.querySelector('.typewriter-accent');
       const punctEl = wrap.querySelector('.typewriter-punct');
       const cursorEl = wrap.querySelector('.typewriter-cursor');
       if (!accentEl) return;
 
-      const accentText = accentEl.textContent || '';
-      const punctText = punctEl ? punctEl.textContent || '' : '';
+      if (sizerEl) {
+        sizerEl.textContent = (sizerEl.textContent || '').replace(/\s+/g, ' ').trim();
+      }
+      const accentText = (accentEl.textContent || '').replace(/\s+/g, ' ').trim();
+      const punctText = punctEl ? (punctEl.textContent || '').replace(/\s+/g, ' ').trim() : '';
       const fullLength = accentText.length + punctText.length;
       if (!fullLength) return;
 

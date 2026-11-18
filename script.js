@@ -370,12 +370,116 @@
     });
   }
 
+  /**
+   * 6. Interactive "Make your hand-off list" Hours Calculator & Plan Matcher
+   */
+  function initHandoffCalculator() {
+    const tasks = document.querySelectorAll('.handoff-task[data-hours]');
+    if (!tasks.length) return;
+
+    const totalEl = document.getElementById('handoff-total-hours');
+    const matchedLink = document.getElementById('handoff-matched-link');
+    const matchedSub = document.getElementById('handoff-matched-sub');
+    const planCards = document.querySelectorAll('.handoff-plan-card[data-plan]');
+
+    function updateCalculation() {
+      let total = 0;
+      tasks.forEach((btn) => {
+        if (btn.getAttribute('aria-pressed') === 'true') {
+          total += parseInt(btn.getAttribute('data-hours') || '0', 10);
+        }
+      });
+
+      if (totalEl) {
+        totalEl.textContent = String(total);
+      }
+
+      let recommended = 'steady';
+      let label = 'Steady plan, £720/mo';
+      let sub = '20 hours a month';
+
+      if (total <= 10) {
+        recommended = 'essentials';
+        label = 'Essentials plan, £380/mo';
+        sub = '10 hours a month';
+      } else if (total <= 20) {
+        recommended = 'steady';
+        label = 'Steady plan, £720/mo';
+        sub = '20 hours a month';
+      } else {
+        recommended = 'right-hand';
+        label = 'Right Hand plan, £1,380/mo';
+        sub = total > 40 ? '40 hours + extra hours' : '40 hours a month';
+      }
+
+      if (matchedLink) matchedLink.textContent = label;
+      if (matchedSub) matchedSub.textContent = sub;
+
+      planCards.forEach((card) => {
+        const isMatch = card.getAttribute('data-plan') === recommended;
+        card.classList.toggle('is-recommended', isMatch);
+      });
+    }
+
+    tasks.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const next = btn.getAttribute('aria-pressed') !== 'true';
+        btn.setAttribute('aria-pressed', next ? 'true' : 'false');
+        updateCalculation();
+      });
+    });
+
+    updateCalculation();
+  }
+
+  /**
+   * 7. Contact Page Form Handler
+   */
+  function initContactForm() {
+    const form = document.getElementById('vk-contact-form');
+    if (!form) return;
+
+    const statusEl = document.getElementById('vk-contact-status');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const name = String(fd.get('name') || '').trim();
+      const email = String(fd.get('email') || '').trim();
+      const business = String(fd.get('business') || '').trim();
+      const message = String(fd.get('message') || '').trim();
+
+      const subject = encodeURIComponent(
+        `New enquiry from ${name || 'Virtually Kelsey website'}`
+      );
+      const bodyLines = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        business ? `Business / Website: ${business}` : '',
+        '',
+        'What I would like to hand off:',
+        message,
+      ].filter(Boolean);
+      const body = encodeURIComponent(bodyLines.join('\n'));
+
+      window.location.href = `mailto:kelseyjohn3@gmail.com?subject=${subject}&body=${body}`;
+
+      if (statusEl) {
+        statusEl.textContent =
+          'Thank you! Your email draft has been opened—or email kelseyjohn3@gmail.com directly anytime.';
+        statusEl.classList.add('is-visible');
+      }
+    });
+  }
+
   function initAll() {
     runInitialAppearAnimations();
     initScrollRevealAnimations();
     initFaqAccordions();
     initNavigation();
     initSplitTextLinks();
+    initHandoffCalculator();
+    initContactForm();
   }
 
   // Initialize on DOMContentLoaded

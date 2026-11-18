@@ -2957,3 +2957,977 @@ body {
   }
 }
 
+/* ==========================================================================
+   HOMEPAGE: "MAKE YOUR HAND-OFF LIST" INTERACTIVE CALCULATOR & PLANS
+   ========================================================================== */
+.handoff-builder-section {
+  width: 100%;
+  padding: 104px 50px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 52px;
+}
+
+.handoff-builder-header {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+.handoff-builder-header .preset-lead {
+  max-width: 480px;
+}
+
+.handoff-builder-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: minmax(0, 456px) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+/* Left Interactive Checklist Card */
+.handoff-list-card {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(38, 26, 23, 0.1);
+  box-shadow: rgba(20, 19, 42, 0.08) 0px 10px 30px 0px;
+  overflow: hidden;
+}
+
+.handoff-list-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  background-color: #fff6d1;
+}
+
+.handoff-list-head-title {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--vk-ink);
+}
+
+.handoff-list-head-sub {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+.handoff-group-label {
+  padding: 11px 24px 5px;
+  background-color: #faf9f6;
+  border-top: 1px solid rgba(38, 26, 23, 0.06);
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+.handoff-task {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background-color: #ffffff;
+  border: none;
+  border-top: 1px solid rgba(38, 26, 23, 0.06);
+  cursor: pointer;
+  text-align: left;
+  font-family: "Hanken Grotesk", sans-serif;
+  transition: background-color 0.16s ease;
+}
+
+.handoff-task:hover {
+  background-color: #faf9ff;
+}
+
+.handoff-task:focus-visible {
+  outline: 2px solid var(--vk-plum);
+  outline-offset: -2px;
+}
+
+.handoff-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1.5px solid rgba(38, 26, 23, 0.25);
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  flex-shrink: 0;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.handoff-task[aria-pressed="true"] .handoff-check {
+  background-color: var(--vk-plum);
+  border-color: var(--vk-plum);
+  color: #ffffff;
+}
+
+.handoff-task-name {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--vk-ink);
+}
+
+.handoff-task[aria-pressed="true"] .handoff-task-name {
+  font-weight: 600;
+}
+
+.handoff-task-hours {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(78, 76, 100, 0.72);
+  white-space: nowrap;
+}
+
+.handoff-task[aria-pressed="true"] .handoff-task-hours {
+  font-weight: 700;
+  color: var(--vk-plum);
+}
+
+.handoff-list-footer {
+  padding: 20px 24px 22px;
+  border-top: 1px solid rgba(38, 26, 23, 0.1);
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.handoff-summary-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.handoff-total-main {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #000000;
+}
+
+.handoff-total-sub {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+  margin-top: 2px;
+}
+
+.handoff-matched-box {
+  text-align: right;
+}
+
+.handoff-matched-link {
+  display: inline-block;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--vk-ink);
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.handoff-matched-link:hover {
+  color: var(--vk-plum);
+}
+
+.handoff-matched-sub {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+  margin-top: 3px;
+}
+
+.handoff-list-note {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+/* Right Plan Cards Stack */
+.handoff-plans-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.handoff-plan-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 28px 28px;
+  background-color: #ffffff;
+  border: 1px solid rgba(38, 26, 23, 0.1);
+  box-shadow: rgba(20, 19, 42, 0.05) 0px 4px 16px 0px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.25fr) auto;
+  gap: 22px;
+  align-items: center;
+  transition: background-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.handoff-fits-badge {
+  display: none;
+  position: absolute;
+  top: -13px;
+  left: 24px;
+  background-color: var(--token-0769912f-8df2-45c8-978a-f38fd54c41e9);
+  color: var(--vk-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 5px;
+  transform: rotate(-2deg);
+  box-shadow: rgba(38, 26, 23, 0.12) 0px 4px 10px 0px;
+}
+
+.handoff-plan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.handoff-plan-name {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000000;
+}
+
+.handoff-plan-hours {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--vk-ink);
+}
+
+.handoff-plan-desc {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+  margin-top: 4px;
+}
+
+.handoff-plan-perks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.handoff-plan-perks li {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--vk-ink);
+}
+
+.handoff-perk-check {
+  color: var(--vk-plum);
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1.35;
+}
+
+.handoff-plan-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.handoff-plan-price {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.handoff-plan-price span {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+.handoff-plan-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 22px;
+  border-radius: 100px;
+  border: 1.5px solid var(--vk-ink);
+  background-color: transparent;
+  color: var(--vk-ink);
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.handoff-plan-btn:hover {
+  background-color: var(--vk-ink);
+  color: #ffffff;
+}
+
+/* Recommended / Active Plan Card State */
+.handoff-plan-card.is-recommended {
+  background-color: var(--vk-plum);
+  border-color: var(--vk-plum);
+  box-shadow: rgba(107, 29, 83, 0.22) 0px 14px 32px 0px;
+}
+
+.handoff-plan-card.is-recommended .handoff-fits-badge {
+  display: inline-block;
+}
+
+.handoff-plan-card.is-recommended .handoff-plan-name,
+.handoff-plan-card.is-recommended .handoff-plan-price {
+  color: #ffffff;
+}
+
+.handoff-plan-card.is-recommended .handoff-plan-hours,
+.handoff-plan-card.is-recommended .handoff-plan-perks li {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.handoff-plan-card.is-recommended .handoff-plan-desc,
+.handoff-plan-card.is-recommended .handoff-plan-price span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.handoff-plan-card.is-recommended .handoff-perk-check {
+  color: var(--token-0769912f-8df2-45c8-978a-f38fd54c41e9);
+}
+
+.handoff-plan-card.is-recommended .handoff-plan-btn {
+  background-color: var(--token-0769912f-8df2-45c8-978a-f38fd54c41e9);
+  border-color: var(--token-0769912f-8df2-45c8-978a-f38fd54c41e9);
+  color: var(--vk-ink);
+}
+
+.handoff-plan-card.is-recommended .handoff-plan-btn:hover {
+  background-color: #ffe375;
+  border-color: #ffe375;
+}
+
+.handoff-fineprint {
+  width: 100%;
+  padding: 6px 2px 0;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+.handoff-fineprint strong {
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   HOMEPAGE: "FROM FIRST CALL TO FIRST FRIDAY" SECTION
+   ========================================================================== */
+.first-friday-section {
+  width: 100%;
+  padding: 104px 50px;
+  background-color: #fff6d1;
+  display: flex;
+  justify-content: center;
+}
+
+.first-friday-inner {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: 64px;
+  align-items: center;
+}
+
+.first-friday-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 36px;
+}
+
+.first-friday-steps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(38, 26, 23, 0.12);
+}
+
+.first-friday-step {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(38, 26, 23, 0.12);
+}
+
+.first-friday-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid var(--vk-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--vk-ink);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.first-friday-num.is-solid {
+  background-color: var(--vk-ink);
+  color: #ffffff;
+}
+
+.first-friday-step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.first-friday-step-title {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000000;
+}
+
+.first-friday-step-desc {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--vk-ink);
+}
+
+.first-friday-right {
+  position: relative;
+  padding-left: 36px;
+  padding-bottom: 28px;
+}
+
+.first-friday-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3.45;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: rgba(38, 26, 23, 0.12) 0px 12px 30px 0px;
+}
+
+.first-friday-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.friday-wrapup-card {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 324px;
+  max-width: calc(100% - 16px);
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: rgba(20, 19, 42, 0.16) 0px 14px 36px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.friday-wrapup-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.friday-wrapup-sender {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.friday-wrapup-sender img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.friday-wrapup-name {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000000;
+}
+
+.friday-wrapup-to {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+.friday-wrapup-time {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+.friday-wrapup-subject {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.friday-wrapup-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.friday-wrapup-items li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--vk-ink);
+}
+
+.friday-wrapup-check {
+  color: var(--vk-plum);
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.friday-wrapup-dur {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+  white-space: nowrap;
+}
+
+.friday-wrapup-bar {
+  width: 100%;
+  height: 5px;
+  border-radius: 99px;
+  background-color: #e4e1ff;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.friday-wrapup-bar-fill {
+  width: 70%;
+  height: 100%;
+  border-radius: 99px;
+  background-color: var(--vk-plum);
+}
+
+.friday-wrapup-foot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+.friday-wrapup-foot strong {
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   DEDICATED CONTACT PAGE (/contact/)
+   ========================================================================== */
+.contact-page-hero {
+  padding-bottom: 72px;
+}
+
+.contact-page-section {
+  width: 100%;
+  padding: 96px 50px 112px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-page-inner {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  gap: 64px;
+  align-items: start;
+}
+
+.contact-form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.contact-form-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form-intro .preset-body {
+  max-width: 580px;
+}
+
+.contact-page-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.contact-form-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-field label {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--vk-ink);
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(38, 26, 23, 0.16);
+  background-color: #ffffff;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--vk-ink);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.contact-field textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: rgba(78, 76, 100, 0.58);
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: var(--vk-plum);
+  box-shadow: 0 0 0 3px rgba(107, 29, 83, 0.12);
+}
+
+.contact-submit-btn {
+  align-self: flex-start;
+  background-color: var(--vk-plum);
+  border: none;
+  height: 52px;
+  padding-inline: 28px;
+  font-size: 16.5px;
+  font-weight: 600;
+}
+
+.contact-submit-btn:hover {
+  background-color: var(--vk-plum-hover);
+}
+
+.contact-form-status {
+  display: none;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background-color: #faf9ff;
+  border: 1px solid var(--token-dea9218e-5722-47d5-814b-84640b27e0a0);
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--vk-ink);
+}
+
+.contact-form-status.is-visible {
+  display: block;
+}
+
+/* Right Column: "Prefer to talk?" Card */
+.prefer-talk-card {
+  background-color: #fff6d1;
+  border-radius: 20px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.prefer-talk-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prefer-talk-head .preset-body {
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--vk-ink);
+}
+
+.prefer-talk-btn {
+  background-color: var(--vk-plum);
+  height: 48px;
+  padding-inline: 26px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.prefer-talk-btn:hover {
+  background-color: var(--vk-plum-hover);
+}
+
+.prefer-talk-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.prefer-talk-item {
+  padding: 16px 0;
+  border-top: 1px solid rgba(38, 26, 23, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prefer-talk-item:last-child {
+  padding-bottom: 0;
+}
+
+.prefer-talk-label {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--token-17d447e8-12a8-44fc-9391-195ef821104c);
+}
+
+.prefer-talk-value {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--vk-ink);
+}
+
+.prefer-talk-email {
+  align-self: flex-start;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--vk-ink);
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+  transition: color 0.18s ease;
+}
+
+.prefer-talk-email:hover {
+  color: var(--vk-plum);
+}
+
+@media (max-width: 1299.98px) {
+  .handoff-builder-section {
+    padding: 80px 50px;
+  }
+
+  .handoff-builder-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .handoff-builder-grid {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+  }
+
+  .handoff-fineprint {
+    max-width: 680px;
+  }
+
+  .first-friday-section {
+    padding: 80px 50px;
+  }
+
+  .first-friday-inner {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    gap: 48px;
+  }
+
+  .contact-page-section {
+    padding: 72px 50px;
+  }
+
+  .contact-page-inner {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 949.98px) {
+  .handoff-builder-section {
+    padding: 56px 16px;
+    gap: 36px;
+  }
+
+  .handoff-plan-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px 22px;
+  }
+
+  .handoff-plan-action {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 12px;
+    border-top: 1px solid rgba(38, 26, 23, 0.1);
+  }
+
+  .handoff-plan-card.is-recommended .handoff-plan-action {
+    border-top-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .first-friday-section {
+    padding: 56px 16px;
+  }
+
+  .first-friday-right {
+    padding-left: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .friday-wrapup-card {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin-top: -36px;
+    margin-inline: auto;
+  }
+
+  .contact-page-section {
+    padding: 48px 16px 64px;
+  }
+
+  .contact-form-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-submit-btn,
+  .prefer-talk-btn {
+    width: 100%;
+  }
+
+  .prefer-talk-card {
+    padding: 28px 24px;
+  }
+}
+

@@ -734,7 +734,7 @@ section[id] {
   gap: 64px;
   width: 100%;
   padding: 100px 0px;
-  background-color: var(--white);
+  background-color: #faf9ff;
   position: relative;
 }
 

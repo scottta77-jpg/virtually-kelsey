@@ -618,8 +618,131 @@
     });
   }
 
+  /**
+   * 8. Framer Marketplace Scroll Text Reveal (Character-by-Character Opacity Scrub)
+   */
+  function initTextRevealScroll() {
+    const targets = document.querySelectorAll('[data-text-reveal]');
+    if (!targets.length) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    targets.forEach((el) => {
+      const startOffset = Number(el.getAttribute('data-start-offset') || 90);
+      const endOffset = Number(el.getAttribute('data-end-offset') || 38);
+      const dimOpacity = Number(el.getAttribute('data-dim-opacity') || 0.2);
+
+      const plainText = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!plainText) return;
+      el.setAttribute('aria-label', plainText);
+
+      const segments = [];
+
+      function splitNodeRecursively(parent) {
+        const children = Array.from(parent.childNodes);
+        children.forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent || '';
+            if (!text.length) return;
+            const frag = document.createDocumentFragment();
+            const parts = text.split(/(\s+)/);
+            parts.forEach((part) => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) {
+                frag.appendChild(document.createTextNode(part));
+              } else {
+                const wordSpan = document.createElement('span');
+                wordSpan.className = 'text-reveal-word';
+                wordSpan.setAttribute('aria-hidden', 'true');
+                for (const ch of part) {
+                  const charSpan = document.createElement('span');
+                  charSpan.className = 'text-reveal-char';
+                  charSpan.textContent = ch;
+                  charSpan.style.opacity = String(dimOpacity);
+                  wordSpan.appendChild(charSpan);
+                  segments.push(charSpan);
+                }
+                frag.appendChild(wordSpan);
+              }
+            });
+            node.parentNode.replaceChild(frag, node);
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const childEl = node;
+            if (childEl.tagName === 'BR') {
+              childEl.style.opacity = String(dimOpacity);
+              segments.push(childEl);
+            } else {
+              splitNodeRecursively(childEl);
+            }
+          }
+        });
+      }
+
+      splitNodeRecursively(el);
+      if (!segments.length) return;
+
+      let isVisible = true;
+      let rafId = 0;
+
+      function computeReveal() {
+        rafId = 0;
+        if (!isVisible) return;
+        const rect = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const startPx = vh * (startOffset / 100);
+        const endPx = vh * (endOffset / 100);
+        const totalRange = rect.height + (startPx - endPx);
+        const scrolled = startPx - rect.top;
+        const progress =
+          totalRange > 0
+            ? Math.min(Math.max(scrolled / totalRange, 0), 1)
+            : 1;
+
+        const total = segments.length;
+        const litCount = Math.floor(progress * total);
+
+        for (let i = 0; i < total; i++) {
+          if (i < litCount) {
+            segments[i].style.opacity = '1';
+          } else if (i === litCount) {
+            const frac = progress * total - litCount;
+            segments[i].style.opacity = String(
+              dimOpacity + frac * (1 - dimOpacity)
+            );
+          } else {
+            segments[i].style.opacity = String(dimOpacity);
+          }
+        }
+      }
+
+      function scheduleReveal() {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(computeReveal);
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            isVisible = entries[0].isIntersecting;
+            if (isVisible) scheduleReveal();
+          },
+          { rootMargin: '200px 0px 200px 0px', threshold: 0 }
+        );
+        observer.observe(el);
+      }
+
+      window.addEventListener('scroll', scheduleReveal, { passive: true });
+      window.addEventListener('resize', scheduleReveal, { passive: true });
+      computeReveal();
+    });
+  }
+
   function initAll() {
     runInitialAppearAnimations();
+    initTextRevealScroll();
     initScrollRevealAnimations();
     initFaqAccordions();
     initNavigation();

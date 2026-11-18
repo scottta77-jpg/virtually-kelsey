@@ -2728,6 +2728,16 @@ section[id] {
   line-height: 1.15;
 }
 
+.text-reveal-word {
+  display: inline;
+  white-space: nowrap;
+}
+
+.text-reveal-char {
+  display: inline;
+  will-change: opacity;
+}
+
 .home-about-paragraphs {
   display: flex;
   flex-direction: column;

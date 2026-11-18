@@ -838,15 +838,16 @@
       const accentEl = wrap.querySelector('.typewriter-accent');
       const punctEl = wrap.querySelector('.typewriter-punct');
       const cursorEl = wrap.querySelector('.typewriter-cursor');
-      if (!accentEl || !punctEl) return;
+      if (!accentEl) return;
 
-      const accentText = accentEl.textContent || 'get started';
-      const punctText = punctEl.textContent || '?';
+      const accentText = accentEl.textContent || '';
+      const punctText = punctEl ? punctEl.textContent || '' : '';
       const fullLength = accentText.length + punctText.length;
+      if (!fullLength) return;
 
-      const TYPING_SPEED = 100;
-      const DELETING_SPEED = 60;
-      const PAUSE_DURATION = 1000;
+      const TYPING_SPEED = 90;
+      const DELETING_SPEED = 55;
+      const PAUSE_DURATION = 1200;
 
       let charIndex = 0;
       let isDeleting = false;
@@ -857,7 +858,9 @@
         const accentCount = Math.min(count, accentText.length);
         const punctCount = Math.max(0, count - accentText.length);
         accentEl.textContent = accentText.slice(0, accentCount);
-        punctEl.textContent = punctText.slice(0, punctCount);
+        if (punctEl) {
+          punctEl.textContent = punctText.slice(0, punctCount);
+        }
       }
 
       function scheduleNext() {

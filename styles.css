@@ -559,6 +559,10 @@ section[id] {
   .hero-trust-list {
     justify-content: center;
   }
+
+  .hero-text-group .typewriter-live {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 639.98px) {
@@ -2077,7 +2081,7 @@ section[id] {
   }
 
   .hero-left .preset-h1 {
-    font-size: 40px;
+    font-size: clamp(32px, 9.2vw, 40px);
     line-height: 112%;
   }
 

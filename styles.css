@@ -321,10 +321,13 @@ section[id] {
   transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav-link:hover,
-.nav-link[aria-current="page"] {
+.nav-link:hover {
   color: var(--espresso-hover);
-  text-decoration: underline;
+}
+
+.nav-link[aria-current="page"] {
+  color: var(--espresso);
+  border-bottom: 1.5px solid var(--espresso);
 }
 
 .navbar-cta {
@@ -1533,6 +1536,61 @@ section[id] {
 .split-text-link:hover .split-char-bottom,
 .split-text-link:focus-visible .split-char-bottom {
   transform: translateY(0%);
+}
+
+/* ==========================================================================
+   Universal Split-Text Mouse Hover Effect (Menu, Primary/Secondary CTAs, Links)
+   ========================================================================== */
+.ui-split-text {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1.25em;
+}
+
+.ui-split-char {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 1.25em;
+  line-height: 1.25em;
+}
+
+.ui-split-char-top,
+.ui-split-char-bottom {
+  display: block;
+  transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--char-index, 0) * 12ms);
+  will-change: transform;
+}
+
+.ui-split-char-top {
+  transform: translateY(0%);
+}
+
+.ui-split-char-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: currentColor;
+  transform: translateY(105%);
+}
+
+.has-split-hover:hover .ui-split-char-top,
+.has-split-hover:focus-visible .ui-split-char-top {
+  transform: translateY(-105%);
+}
+
+.has-split-hover:hover .ui-split-char-bottom,
+.has-split-hover:focus-visible .ui-split-char-bottom {
+  transform: translateY(0%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-split-char-top,
+  .ui-split-char-bottom {
+    transition: none;
+  }
 }
 
 /* ==========================================================================

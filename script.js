@@ -410,9 +410,76 @@
   }
 
   /**
-   * 5. Split-Text Hover Highlight Effect for Footer Credit Link
+   * 5. Split-Text Hover Highlight Effect for Footer Credit, Menu & Interactive CTAs
    */
+  function segmentGraphemes(str) {
+    if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+      const seg = new Intl.Segmenter('en', { granularity: 'grapheme' });
+      return Array.from(seg.segment(str), (s) => s.segment);
+    }
+    return Array.from(str);
+  }
+
+  function buildSplitSpan(text, startIdx) {
+    const wrap = document.createElement('span');
+    wrap.className = 'ui-split-text';
+    wrap.setAttribute('aria-hidden', 'true');
+
+    let idx = startIdx;
+    segmentGraphemes(text).forEach((ch) => {
+      const displayChar = ch === ' ' ? '\u00A0' : ch;
+
+      const charWrap = document.createElement('span');
+      charWrap.className = 'ui-split-char';
+      charWrap.style.setProperty('--char-index', String(idx));
+
+      const topSpan = document.createElement('span');
+      topSpan.className = 'ui-split-char-top';
+      topSpan.textContent = displayChar;
+
+      const bottomSpan = document.createElement('span');
+      bottomSpan.className = 'ui-split-char-bottom';
+      bottomSpan.setAttribute('aria-hidden', 'true');
+      bottomSpan.textContent = displayChar;
+
+      charWrap.appendChild(topSpan);
+      charWrap.appendChild(bottomSpan);
+      wrap.appendChild(charWrap);
+      idx += 1;
+    });
+
+    return { wrap, nextIdx: idx };
+  }
+
+  function applyUiSplitHover(triggerEl, textHolderEl) {
+    if (!triggerEl || !textHolderEl || triggerEl.classList.contains('has-split-hover')) {
+      return;
+    }
+
+    const fullLabel = (triggerEl.textContent || '').replace(/\s+/g, ' ').trim();
+    if (fullLabel && !triggerEl.hasAttribute('aria-label')) {
+      triggerEl.setAttribute('aria-label', fullLabel);
+    }
+
+    let runningIdx = 0;
+    Array.from(textHolderEl.childNodes).forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const raw = node.textContent || '';
+        const clean = raw.trim();
+        if (!clean) return;
+        const { wrap, nextIdx } = buildSplitSpan(clean, runningIdx);
+        runningIdx = nextIdx;
+        node.parentNode.replaceChild(wrap, node);
+      }
+    });
+
+    if (runningIdx > 0) {
+      triggerEl.classList.add('has-split-hover');
+    }
+  }
+
   function initSplitTextLinks() {
+    // Footer "Cornerstone Digital" split-text link
     const links = document.querySelectorAll('.split-text-link');
     links.forEach((link) => {
       const text = link.textContent || '';
@@ -438,6 +505,21 @@
         charWrap.appendChild(bottomSpan);
         link.appendChild(charWrap);
       });
+    });
+
+    // Menu items & CTA buttons ("Book an introductory call", "Explore services", "Book a free call", etc.)
+    const directTargets = document.querySelectorAll(
+      '.nav-link, .navbar-cta, .btn-primary-big, .btn-secondary, .handoff-plan-btn'
+    );
+    directTargets.forEach((el) => {
+      applyUiSplitHover(el, el);
+    });
+
+    // Inline underlined action links ("More about me", "Details", "See pricing plans", "Get in touch")
+    const detailBtns = document.querySelectorAll('.service-details-btn');
+    detailBtns.forEach((btn) => {
+      const labelEl = btn.querySelector('.service-details-label') || btn;
+      applyUiSplitHover(btn, labelEl);
     });
   }
 

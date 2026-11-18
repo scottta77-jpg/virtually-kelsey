@@ -15,8 +15,8 @@
   --gold-hover: #B88E5C;
   --lilac: #E1DDFD;
   --lilac-card: #DDDBFD;
-  --lilac-btn: #DBD8FD;
-  --lilac-hover: #CBC6FB;
+  --lilac-btn: #DAD3FD;
+  --lilac-hover: #C9C1FB;
   --lilac-accent: #CAC5F8;
   --lilac-border: #D2CDFA;
   --espresso: #261A17;
@@ -188,8 +188,7 @@ p a:not([class]):hover,
   height: 120px;
   position: relative;
   z-index: 10;
-  background-color: var(--white);
-  border-bottom: 1px solid var(--border);
+  background-color: transparent;
 }
 
 .navbar {
@@ -200,7 +199,7 @@ p a:not([class]):hover,
   width: 100%;
   height: 120px;
   padding: 0px 50px;
-  background-color: var(--white);
+  background-color: transparent;
   position: relative;
 }
 
@@ -320,7 +319,7 @@ p a:not([class]):hover,
   height: 46px;
   padding: 0px 28px;
   border-radius: 100px;
-  background-color: var(--espresso);
+  background-color: var(--lilac-btn);
   text-decoration: none;
   cursor: pointer;
   white-space: pre;
@@ -328,13 +327,13 @@ p a:not([class]):hover,
   font-size: 16px;
   font-weight: 600;
   line-height: 28px;
-  color: var(--white);
+  color: var(--espresso);
   flex-shrink: 0;
   transition: background-color 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .navbar-cta:hover {
-  background-color: var(--espresso-hover);
+  background-color: var(--lilac-hover);
 }
 
 /* ==========================================================================
@@ -395,7 +394,7 @@ p a:not([class]):hover,
 }
 
 .hero-headline-accent {
-  color: var(--gold-link);
+  color: var(--gold);
 }
 
 .hero-eyebrow {
@@ -442,20 +441,20 @@ p a:not([class]):hover,
   height: 56px;
   padding: 0px 32px;
   border-radius: 100px;
-  background-color: var(--espresso);
+  background-color: var(--lilac-btn);
   text-decoration: none;
   cursor: pointer;
   white-space: pre;
   font-family: "Hanken Grotesk", sans-serif;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 28.8px;
-  color: var(--white);
+  color: var(--espresso);
   transition: background-color 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .btn-primary-big:hover {
-  background-color: var(--espresso-hover);
+  background-color: var(--lilac-hover);
 }
 
 /* Secondary CTA (.framer-1cjxwlc) */
@@ -467,42 +466,43 @@ p a:not([class]):hover,
   gap: 10px;
   height: 38px;
   padding: 0px;
-  border-bottom: 2px solid var(--espresso);
+  border-bottom: 2px solid var(--gold);
   text-decoration: none;
   cursor: pointer;
   font-family: "Hanken Grotesk", sans-serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
-  color: var(--espresso);
+  color: var(--gold);
   transition: color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
               border-bottom-color 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .btn-secondary:hover {
-  color: var(--espresso-hover);
-  border-bottom-color: var(--espresso-hover);
+  color: var(--espresso);
+  border-bottom-color: var(--espresso);
 }
 
 .hero-buttons .btn-primary-big {
-  background-color: var(--espresso);
+  background-color: var(--lilac-btn);
   padding-inline: 32px;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--espresso);
 }
 
 .hero-buttons .btn-primary-big:hover {
-  background-color: var(--espresso-hover);
+  background-color: var(--lilac-hover);
 }
 
 .hero-buttons .btn-secondary {
-  color: var(--espresso);
-  border-bottom-color: var(--espresso);
-  font-weight: 500;
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+  font-weight: 600;
 }
 
 .hero-buttons .btn-secondary:hover {
-  color: var(--espresso-hover);
-  border-bottom-color: var(--espresso-hover);
+  color: var(--espresso);
+  border-bottom-color: var(--espresso);
 }
 
 .hero-right {
@@ -603,9 +603,9 @@ p a:not([class]):hover,
 }
 
 .hero-message--client .hero-message-text {
-  background: var(--champagne-highlight);
+  background: #FED34D;
   color: var(--espresso);
-  border: 1px solid var(--white);
+  border: none;
   box-shadow: 0 8px 24px rgba(38, 26, 23, 0.08);
   border-top-right-radius: 0;
 }
@@ -2236,7 +2236,8 @@ p a:not([class]):hover,
 }
 
 .service-meta-cta {
-  background-color: var(--espresso);
+  background-color: var(--lilac-btn);
+  color: var(--espresso);
   height: 52px;
   padding-inline: 28px;
   font-size: 17px;
@@ -2245,7 +2246,7 @@ p a:not([class]):hover,
 }
 
 .service-meta-cta:hover {
-  background-color: var(--espresso-hover);
+  background-color: var(--lilac-hover);
 }
 
 /* Service Detail Body Section */
@@ -2421,12 +2422,13 @@ p a:not([class]):hover,
 }
 
 .handoff-cta-btn {
-  background-color: var(--espresso);
+  background-color: var(--lilac-btn);
+  color: var(--espresso);
   font-weight: 600;
 }
 
 .handoff-cta-btn:hover {
-  background-color: var(--espresso-hover);
+  background-color: var(--lilac-hover);
 }
 
 .handoff-cta-write {
@@ -3833,7 +3835,8 @@ p a:not([class]):hover,
 
 .contact-submit-btn {
   align-self: flex-start;
-  background-color: var(--espresso);
+  background-color: var(--lilac-btn);
+  color: var(--espresso);
   border: none;
   height: 52px;
   padding-inline: 28px;
@@ -3842,7 +3845,7 @@ p a:not([class]):hover,
 }
 
 .contact-submit-btn:hover {
-  background-color: var(--espresso-hover);
+  background-color: var(--lilac-hover);
 }
 
 .contact-form-status {
@@ -3892,7 +3895,8 @@ p a:not([class]):hover,
 }
 
 .prefer-talk-btn {
-  background-color: var(--espresso);
+  background-color: var(--lilac-btn);
+  color: var(--espresso);
   height: 48px;
   padding-inline: 26px;
   font-size: 16px;
@@ -3900,7 +3904,7 @@ p a:not([class]):hover,
 }
 
 .prefer-talk-btn:hover {
-  background-color: var(--espresso-hover);
+  background-color: var(--lilac-hover);
 }
 
 .prefer-talk-details {

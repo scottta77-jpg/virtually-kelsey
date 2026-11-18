@@ -5,6 +5,10 @@
   "description": "Virtually Kelsey — Virtual PA & Lifestyle Concierge",
   "scripts": {
     "dev": "python3 -m http.server 4173",
-    "start": "python3 -m http.server 4173"
+    "start": "python3 -m http.server 4173",
+    "generate:og": "node scripts/generate-og.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^25.18.1"
   }
 }

@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2576" height="2680" viewBox="0 0 2576 2680" fill="none">
-  <rect x="368" y="250" width="1890" height="2160" rx="110" fill="#E4E1FF"/>
-  <g stroke="#FAF9FF" stroke-width="34">
+  <rect x="368" y="250" width="1890" height="2160" rx="110" fill="#E8DCCB"/>
+  <g stroke="#FAF6F0" stroke-width="34">
     <ellipse cx="1305" cy="1355" rx="850" ry="475" transform="rotate(-23 1305 1355)"/>
     <ellipse cx="1305" cy="1355" rx="850" ry="475" transform="rotate(23 1305 1355)"/>
     <ellipse cx="1305" cy="1355" rx="850" ry="475" transform="rotate(-47 1305 1355)"/>
   </g>
-  <g stroke="#000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+  <g stroke="#B69A73" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M2117 414 2326 392 2225 616 2117 414Z M2326 392 2159 549 2174 477 M2159 549 2200 537"/>
     <path d="m2042 445 22-9 m-6 52 32-13 m26 106 30-12 m24 60 27-11"/>
     <path d="M399 2017C385 2056 350 2086 304 2119C345 2145 371 2174 390 2218C404 2175 428 2149 462 2128C430 2098 411 2061 399 2017Z"/>
   </g>
-  <path d="M2106 1312C2203 1279 2292 1381 2260 1487C2232 1562 2190 1459 2244 1416C2335 1355 2420 1573 2374 1724M2359 1630 2377 1724 2440 1659" stroke="#5E51F1" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M2106 1312C2203 1279 2292 1381 2260 1487C2232 1562 2190 1459 2244 1416C2335 1355 2420 1573 2374 1724M2359 1630 2377 1724 2440 1659" stroke="#B69A73" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

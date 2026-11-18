@@ -433,13 +433,51 @@
   }
 
   /**
-   * 7. Contact Page Form Handler
+   * 7. Contact Page Form Handler (Accessible Validation & Feedback)
    */
   function initContactForm() {
     const form = document.getElementById('vk-contact-form');
     if (!form) return;
 
     const statusEl = document.getElementById('vk-contact-status');
+    const nameInput = document.getElementById('contact-name');
+    const emailInput = document.getElementById('contact-email');
+    const messageInput = document.getElementById('contact-message');
+
+    function setFieldError(input, message) {
+      if (!input) return;
+      const fieldWrap = input.closest('.contact-field');
+      let errEl = fieldWrap ? fieldWrap.querySelector('.contact-field-error') : null;
+
+      if (message) {
+        input.setAttribute('aria-invalid', 'true');
+        if (fieldWrap && !errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'contact-field-error';
+          errEl.id = `${input.id}-error`;
+          fieldWrap.appendChild(errEl);
+        }
+        if (errEl) {
+          errEl.textContent = message;
+          input.setAttribute('aria-describedby', errEl.id);
+        }
+      } else {
+        input.removeAttribute('aria-invalid');
+        input.removeAttribute('aria-describedby');
+        if (errEl) errEl.remove();
+      }
+    }
+
+    [nameInput, emailInput, messageInput].forEach((input) => {
+      if (!input) return;
+      input.addEventListener('input', () => {
+        setFieldError(input, '');
+        if (statusEl && statusEl.classList.contains('is-error')) {
+          statusEl.classList.remove('is-visible', 'is-error');
+          statusEl.textContent = '';
+        }
+      });
+    });
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -448,6 +486,42 @@
       const email = String(fd.get('email') || '').trim();
       const business = String(fd.get('business') || '').trim();
       const message = String(fd.get('message') || '').trim();
+
+      let firstInvalid = null;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!name) {
+        setFieldError(nameInput, 'Please enter your name.');
+        firstInvalid = firstInvalid || nameInput;
+      } else {
+        setFieldError(nameInput, '');
+      }
+
+      if (!email) {
+        setFieldError(emailInput, 'Please enter your email address.');
+        firstInvalid = firstInvalid || emailInput;
+      } else if (!emailPattern.test(email)) {
+        setFieldError(emailInput, 'Please enter a valid email address.');
+        firstInvalid = firstInvalid || emailInput;
+      } else {
+        setFieldError(emailInput, '');
+      }
+
+      if (!message) {
+        setFieldError(messageInput, 'Please share a note on what you would like to hand off.');
+        firstInvalid = firstInvalid || messageInput;
+      } else {
+        setFieldError(messageInput, '');
+      }
+
+      if (firstInvalid) {
+        if (statusEl) {
+          statusEl.textContent = 'Please check the highlighted fields before sending your message.';
+          statusEl.classList.add('is-visible', 'is-error');
+        }
+        firstInvalid.focus();
+        return;
+      }
 
       const subject = encodeURIComponent(
         `New enquiry from ${name || 'Virtually Kelsey website'}`
@@ -465,6 +539,7 @@
       window.location.href = `mailto:kelseyjohn3@gmail.com?subject=${subject}&body=${body}`;
 
       if (statusEl) {
+        statusEl.classList.remove('is-error');
         statusEl.textContent =
           'Thank you! Your email draft has been opened—or email kelseyjohn3@gmail.com directly anytime.';
         statusEl.classList.add('is-visible');

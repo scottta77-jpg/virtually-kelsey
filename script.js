@@ -548,20 +548,20 @@
       }
 
       let recommended = 'steady';
-      let label = 'Steady plan, £720/mo';
+      let label = 'Steady plan, £600/mo';
       let sub = '20 hours a month';
 
       if (total <= 10) {
         recommended = 'essentials';
-        label = 'Essentials plan, £380/mo';
+        label = 'Essentials plan, £300/mo';
         sub = '10 hours a month';
       } else if (total <= 20) {
         recommended = 'steady';
-        label = 'Steady plan, £720/mo';
+        label = 'Steady plan, £600/mo';
         sub = '20 hours a month';
       } else {
         recommended = 'right-hand';
-        label = 'Right Hand plan, £1,380/mo';
+        label = 'Right Hand plan, £1,200/mo';
         sub = total > 40 ? '40 hours + extra hours' : '40 hours a month';
       }
 

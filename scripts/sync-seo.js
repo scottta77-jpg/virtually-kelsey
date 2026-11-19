@@ -11,7 +11,7 @@ if (!ORIGIN || !/^https?:\/\//.test(ORIGIN)) {
   throw new Error(`Invalid siteOrigin in seo.config.json: ${config.siteOrigin}`);
 }
 
-const CSS_VERSION = '40';
+const CSS_VERSION = '41';
 const SHARE_IMAGE_PATH = '/assets/images/og-image.png';
 const SHARE_IMAGE_WIDTH = 1200;
 const SHARE_IMAGE_HEIGHT = 630;

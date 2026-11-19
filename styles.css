@@ -531,26 +531,28 @@ section[id] {
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(2, auto);
-  grid-template-columns: max-content max-content;
-  column-gap: clamp(20px, 1.9vw, 32px);
+  grid-template-columns: minmax(0, max-content) max-content;
+  max-width: 100%;
+  column-gap: clamp(18px, 1.6vw, 28px);
   row-gap: 12px;
 }
 
 .hero-trust-item {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-family: "Hanken Grotesk", sans-serif;
-  font-size: clamp(14px, 0.98vw, 16px);
+  font-size: clamp(14px, 0.96vw, 16px);
   font-weight: 500;
   line-height: 1.45;
   color: var(--body-text);
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .hero-trust-icon {
   width: 19px;
   height: 19px;
+  margin-top: 2px;
   flex-shrink: 0;
   color: var(--gold);
 }

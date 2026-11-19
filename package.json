@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "python3 -m http.server 4173",
     "start": "python3 -m http.server 4173",
+    "build": "node scripts/sync-seo.js",
+    "validate:seo": "node scripts/validate-seo.js",
     "generate:og": "node scripts/generate-og.js"
   },
   "devDependencies": {

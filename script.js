@@ -596,6 +596,9 @@
     const nameInput = document.getElementById('contact-name');
     const emailInput = document.getElementById('contact-email');
     const messageInput = document.getElementById('contact-message');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const defaultBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+    let isSubmitting = false;
 
     function setFieldError(input, message) {
       if (!input) return;
@@ -632,8 +635,10 @@
       });
     });
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (isSubmitting) return;
+
       const fd = new FormData(form);
       const name = String(fd.get('name') || '').trim();
       const email = String(fd.get('email') || '').trim();
@@ -676,26 +681,68 @@
         return;
       }
 
-      const subject = encodeURIComponent(
-        `New enquiry from ${name || 'Virtually Kelsey website'}`
-      );
-      const bodyLines = [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        business ? `Business / Website: ${business}` : '',
-        '',
-        'What I would like to hand off:',
-        message,
-      ].filter(Boolean);
-      const body = encodeURIComponent(bodyLines.join('\n'));
+      fd.set('name', name);
+      fd.set('email', email);
+      fd.set('replyto', email);
+      fd.set('subject', `New enquiry from ${name} — Virtually Kelsey`);
+      if (business) {
+        fd.set('business', business);
+      } else {
+        fd.delete('business');
+      }
+      fd.set('message', message);
 
-      window.location.href = `mailto:kelseyjohn3@gmail.com?subject=${subject}&body=${body}`;
-
+      isSubmitting = true;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitBtn.textContent = 'Sending…';
+      }
       if (statusEl) {
-        statusEl.classList.remove('is-error');
-        statusEl.textContent =
-          'Thank you! Your email draft has been opened—or email kelseyjohn3@gmail.com directly anytime.';
-        statusEl.classList.add('is-visible');
+        statusEl.classList.remove('is-visible', 'is-error');
+        statusEl.textContent = '';
+      }
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+          },
+          body: fd,
+        });
+        const result = await response.json().catch(() => null);
+
+        if (response.ok && result && result.success) {
+          form.reset();
+          if (statusEl) {
+            statusEl.classList.remove('is-error');
+            statusEl.textContent =
+              'Thank you! Your message has been sent—I’ll reply within one working day.';
+            statusEl.classList.add('is-visible');
+          }
+        } else {
+          const errMsg =
+            (result && result.message) ||
+            'Something went wrong sending your message. Please try again or email kelseyjohn3@gmail.com directly.';
+          if (statusEl) {
+            statusEl.textContent = errMsg;
+            statusEl.classList.add('is-visible', 'is-error');
+          }
+        }
+      } catch (_) {
+        if (statusEl) {
+          statusEl.textContent =
+            'Unable to send right now—please check your connection or email kelseyjohn3@gmail.com directly.';
+          statusEl.classList.add('is-visible', 'is-error');
+        }
+      } finally {
+        isSubmitting = false;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute('aria-busy');
+          submitBtn.innerHTML = defaultBtnHtml;
+        }
       }
     });
   }

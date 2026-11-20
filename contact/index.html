@@ -31,7 +31,7 @@
   <meta name="twitter:image:alt" content="Virtually Kelsey — Kelsey John smiling with her laptop alongside the headline Life gets busy. I’ll handle the details." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../styles.css?v=41" />
+  <link rel="stylesheet" href="../styles.css?v=42" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -264,7 +264,11 @@
               <p class="preset-body">Tell me a little about your business or household and what you’d like to hand off. Please don’t send passwords or logins here.</p>
             </div>
 
-            <form id="vk-contact-form" class="contact-page-form" novalidate>
+            <form id="vk-contact-form" class="contact-page-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+              <input type="hidden" name="access_key" value="a58eed21-8bb4-4a50-be33-c55f9d07fd36" />
+              <input type="hidden" name="from_name" value="Virtually Kelsey Website" />
+              <input type="hidden" name="subject" value="New enquiry — Virtually Kelsey website" />
+              <input type="checkbox" name="botcheck" class="vk-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
               <div class="contact-form-row-2">
                 <div class="contact-field">
                   <label for="contact-name">Name</label>
@@ -352,7 +356,7 @@
     </div>
   </div>
 
-  <script src="../script.js?v=11"></script>
+  <script src="../script.js?v=12"></script>
 </body>
 </html>
 

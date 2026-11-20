@@ -4124,6 +4124,10 @@ section[id] {
   color: var(--status-error-text);
 }
 
+.vk-botcheck {
+  display: none !important;
+}
+
 .contact-submit-btn {
   align-self: flex-start;
   background-color: var(--lilac-btn);
@@ -4135,8 +4139,13 @@ section[id] {
   font-weight: 600;
 }
 
-.contact-submit-btn:hover {
+.contact-submit-btn:hover:not(:disabled) {
   background-color: var(--lilac-hover);
+}
+
+.contact-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
 }
 
 .contact-form-status {
